@@ -64,7 +64,7 @@ function App() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("/evidence_pages.json");
+        const response = await fetch("https://postofficehorizon.danslinky.co.uk/evidence_pages.json");
         const data = await response.json();
         setEvidencePages(data);
       } catch (error) {
