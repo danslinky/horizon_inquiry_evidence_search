@@ -4,21 +4,19 @@ import "./App.css";
 const Modal = ({ page_text, closeModal, searchTerm }) => {
   const modalContentRef = useRef(null);
 
-  const handleClickOutside = (event) => {
-    if (
-      modalContentRef.current &&
-      !modalContentRef.current.contains(event.target)
-    ) {
-      closeModal();
-    }
-  };
-
   useEffect(() => {
-    // Add when the component mounts
+    const handleClickOutside = (event) => {
+      if (
+        modalContentRef.current &&
+        !modalContentRef.current.contains(event.target)
+      ) {
+        closeModal();
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
-    // Remove when the component unmounts
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []); // Empty array ensures this only runs on mount and unmount
+  }, [closeModal]);
 
   const highlightText = (text, term) => {
     if (!term.trim()) return text;
